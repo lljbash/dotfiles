@@ -57,6 +57,7 @@ return {
           basedpyright = {
             analysis = {
               typeCheckingMode = "standard",
+              useLibraryCodeForTypes = nil,
             },
           },
         },
