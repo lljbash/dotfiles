@@ -1,11 +1,12 @@
 return {
   {
     "nvim-treesitter/nvim-treesitter",
+    branch="master",
     dependencies = {
       { "LiadOz/nvim-dap-repl-highlights", opts = {} },
     },
     build = ":TSUpdate",
-    main = "nvim-treesitter.config",
+    main = "nvim-treesitter.configs",
     opts = {
       ensure_installed = {
         "bash",
