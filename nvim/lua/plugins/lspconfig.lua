@@ -271,7 +271,7 @@ return {
     keys = {
       {
         mode = { "n", "v" },
-        "<Leader>a",
+        "<Leader>A",
         function()
           require("actions-preview").code_actions()
         end,

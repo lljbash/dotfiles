@@ -1,6 +1,5 @@
 return {
   {
-    -- Plugin for GitHub Copilot integration
     "zbirenbaum/copilot.lua",
     opts = {
       suggestion = {
@@ -18,61 +17,91 @@ return {
   },
 
   {
-    -- Plugin for Copilot Chat integration
-    "CopilotC-Nvim/CopilotChat.nvim",
+    "folke/sidekick.nvim",
     event = "VeryLazy",
-    dependencies = {
-      "zbirenbaum/copilot.lua",
-      { "nvim-lua/plenary.nvim", branch = "master" },
-      "folke/which-key.nvim",
+    opts = {
+      cli = {
+        picker = "telescope",
+      },
     },
-    build = "make tiktoken",
-    config = function()
-      local cc = require("CopilotChat")
-      local ccp = require("CopilotChat.config.prompts")
-      local ccs = require("CopilotChat.select")
-      for key, value in pairs(ccp) do
-        if vim.startswith(key, "COPILOT_") then
-          ccp[key].system_prompt = value.system_prompt .. "\nSpeak Chinese by default."
-        end
-      end
-      cc.setup({
-        system_prompt = ccp.COPILOT_INSTRUCTIONS.system_prompt,
-        window = {
-          width = 0.45,
-        },
-        selection = function(source)
-          return ccs.visual(source) or ccs.buffer(source)
+    keys = {
+      {
+        "<Tab>",
+        function()
+          if not require("sidekick").nes_jump_or_apply() then
+            return "<Tab>"
+          end
         end,
-      })
-      local wk = require("which-key")
-      wk.add({
-        mode = { "n", "v" },
-        { "<leader>c", group = "CopilotChat" },
-        {
-          "<leader>cc",
-          cc.toggle,
-          desc = "Toggle",
-        },
-        {
-          "<leader>cq",
-          function()
-            local input = vim.fn.input("Quick Chat: ")
-            if input ~= "" then
-              cc.ask(input, { selection = require("CopilotChat.select").buffer })
-            end
-          end,
-          desc = "Quick chat",
-        },
-        {
-          "<leader>cp",
-          function()
-            local actions = require("CopilotChat.actions")
-            require("CopilotChat.integrations.telescope").pick(actions.prompt_actions())
-          end,
-          desc = "Prompt actions",
-        },
-      })
-    end,
+        expr = true,
+        desc = "Goto/Apply Next Edit Suggestion",
+      },
+      {
+        "<c-.>",
+        function()
+          require("sidekick.cli").toggle()
+        end,
+        desc = "Sidekick Toggle",
+        mode = { "n", "t", "i", "x" },
+      },
+      {
+        "<leader>aa",
+        function()
+          require("sidekick.cli").toggle()
+        end,
+        desc = "Sidekick Toggle CLI",
+      },
+      {
+        "<leader>as",
+        function()
+          require("sidekick.cli").select()
+        end,
+        desc = "Select CLI",
+      },
+      {
+        "<leader>ad",
+        function()
+          require("sidekick.cli").close()
+        end,
+        desc = "Detach a CLI Session",
+      },
+      {
+        "<leader>at",
+        function()
+          require("sidekick.cli").send({ msg = "{this}" })
+        end,
+        mode = { "x", "n" },
+        desc = "Send This",
+      },
+      {
+        "<leader>af",
+        function()
+          require("sidekick.cli").send({ msg = "{file}" })
+        end,
+        desc = "Send File",
+      },
+      {
+        "<leader>av",
+        function()
+          require("sidekick.cli").send({ msg = "{selection}" })
+        end,
+        mode = { "x" },
+        desc = "Send Visual Selection",
+      },
+      {
+        "<leader>ap",
+        function()
+          require("sidekick.cli").prompt()
+        end,
+        mode = { "n", "x" },
+        desc = "Select Prompt",
+      },
+      {
+        "<leader>ac",
+        function()
+          require("sidekick.cli").toggle({ name = "opencode", focus = true })
+        end,
+        desc = "Sidekick Toggle Opencode",
+      },
+    },
   },
 }
