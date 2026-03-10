@@ -76,3 +76,7 @@ If not found, check `~/.local/share/nvim/mason/bin`. If still not found, prompt 
 - Changes reflect personal preferences
 - Bootstrap scripts may overwrite existing configurations
 - Requires Nerd Font for icons
+
+## Preferences
+
+- When asking questions, use multiple choice format
