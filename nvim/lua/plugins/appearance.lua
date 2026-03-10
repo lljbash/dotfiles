@@ -158,7 +158,7 @@ return {
             },
           },
           lualine_x = {
-            { "copilot", cond = width_not_less_than(160), show_colors = true },
+            { "copilot", show_colors = true },
           },
           lualine_y = {
             "filetype",
