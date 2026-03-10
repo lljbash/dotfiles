@@ -12,6 +12,7 @@ Personal development environment configs:
 
 - You MUST use `question` tool to ask questions if you are unsure about something
 - Prefer use `question` tool over asking me directly
+- Never guess or assume anything without asking
 - Never run `just` commands (dangerous: overwrites configs, installs deps, cleans user data)
 - Don't commit or push unless I ask
 
