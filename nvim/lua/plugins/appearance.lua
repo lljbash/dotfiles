@@ -268,12 +268,9 @@ return {
         },
       })
       -- NOTE: 使用 <Space>e 查看历史通知
-      vim.keymap.set(
-        "n",
-        "<Space>e",
-        function() require("noice").cmd("history") end,
-        { desc = "Noice history" }
-      )
+      vim.keymap.set("n", "<Space>e", function()
+        require("noice").cmd("pick")
+      end, { desc = "Noice history (via snacks)" })
     end,
   },
   -- 平滑滚动
