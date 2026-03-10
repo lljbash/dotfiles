@@ -1,82 +1,42 @@
-# Dotfiles Project
+# Dotfiles
 
-This is a personal dotfiles repository containing development environment configurations.
+Personal development environment configs:
+- Neovim (`nvim/`)
+- Zsh (`zshrc`, `zshenv`)
+- Tmux (`tmux.conf`)
+- Just (`justfile`)
 
-- **Neovim** - Editor configuration in `nvim/`
-- **Zsh** - Shell configuration in `zshrc`, `zshenv`
-- **Tmux** - Terminal multiplexer configuration in `tmux.conf`
-- **Just** - Bootstrap scripts in `justfile`
+---
 
-**WARNING**: Never run `just` commands. The `justfile` contains dangerous operations:
-- Formatting and overwriting user config files (`~/.zshrc`, `~/.config/nvim`, etc.)
-- Installing system dependencies via apt/brew
-- Cleaning up user data (uv cache, neovim config, rustup, etc.)
-- Changing login shell
+# Rules You Must Follow
 
-Only verify prerequisites with explicit request: `just check-apps`.
+- You MUST use `question` tool to ask questions if you are unsure about something
+- Prefer use `question` tool over asking me directly
+- Never run `just` commands (dangerous: overwrites configs, installs deps, cleans user data)
+- Don't commit or push unless I ask
 
-## Code Style Guidelines
+## After Making Changes
+- Lua files: run `stylua`
+- Shell scripts: run `shfmt` and `shellcheck`
+- Check typos by yourself
 
-### General
+If a tool is not found, check `~/.local/share/nvim/mason/bin`. If still not found, ask me to install it.
 
-- 2 spaces for indentation (not tabs)
+---
+
+# Code Style (Reference)
+
+## General
+- 2 spaces for indentation
 - Keep lines under 100 characters
+- Be consistent with existing codebase (naming, style, etc.)
+- Use latest practices; avoid deprecated methods
 - Add comments for non-obvious decisions
-- Follow the latest practices for each language/framework
-- Maintain consistency with existing implementation
 
-### Lua (Neovim)
-
-- Use local functions over global
-- Group require statements at the top
-- Follow Neovim's latest practices; avoid deprecated APIs
-
-### Shell (Zsh/Bash)
-
-- Use functions for reusable logic
-- Quote variables
-- Check exit codes for critical operations
-
-**Note**: `justfile` uses tab indentation (required by just), not 2 spaces.
-
-### Configuration Files
-
-- **JSON**: 2 spaces, no trailing commas, double quotes
-- **YAML**: 2 spaces, no tabs
-- **TOML**: `kebab-case` keys, no quotes around simple values
-
-### Git
-
-Conventional commits:
-
+## Commit Messages
+Use Conventional Commits:
 ```
 feat(nvim): add new plugin for completion
 fix(zsh): correct PATH variable
 chore(tmux): update keybindings
 ```
-
-### Naming
-
-| Type | Convention | Example |
-|------|------------|---------|
-| Variables/Functions | snake_case | `my_variable` |
-| Constants | UPPER_SNAKE | `MAX_BUFFER` |
-| Files | kebab-case | `my-config.lua` |
-| Git branches | kebab-case | `feature/add-completion` |
-
-## Before Committing
-
-1. Format: `stylua` (Lua), `shfmt` (Shell)
-2. Lint: `shellcheck` (Shell), `typos` (all files)
-
-If not found, check `~/.local/share/nvim/mason/bin`. If still not found, prompt user to install.
-
-## Notes
-
-- Changes reflect personal preferences
-- Bootstrap scripts may overwrite existing configurations
-- Requires Nerd Font for icons
-
-## Preferences
-
-- When asking questions, use multiple choice format
