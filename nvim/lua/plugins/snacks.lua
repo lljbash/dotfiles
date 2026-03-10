@@ -6,9 +6,13 @@ return {
     lazy = false,
     dependencies = {
       "nvim-tree/nvim-web-devicons", -- for icons
+      "tpope/vim-unimpaired",
     },
     ---@type snacks.Config
     opts = {
+      scope = {
+        enabled = true,
+      },
       picker = {
         enabled = true,
         matcher = {
