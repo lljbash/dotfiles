@@ -51,17 +51,4 @@ return {
       })
     end,
   },
-  -- Github 操作
-  {
-    enabled = false,
-    "pwntester/octo.nvim",
-    dependencies = {
-      "nvim-lua/plenary.nvim",
-      "nvim-telescope/telescope.nvim",
-      "nvim-web-devicons",
-      "folke/which-key.nvim", -- for easier key-binding
-    },
-    opts = {},
-    cmd = { "Octo" },
-  },
 }

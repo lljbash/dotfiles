@@ -17,7 +17,7 @@ return {
 
   -- Vim sugar for the UNIX shell commands that need it the most
   -- :Remove :Delete :Move :Chmod :Mkdir ...
-  -- Now provided by telescope-file-browser.nvim
+  -- Now provided by snacks.picker.explorer
   -- "tpope/vim-eunuch",
 
   -- smart :KillBuffer

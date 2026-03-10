@@ -41,6 +41,10 @@ return {
       },
       load_on_setup = true,
       close_filetypes_on_save = vim.list_extend({ "checkhealth" }, sidebar_filetypes),
+      session_lens = {
+        picker = "snacks",
+        load_on_setup = true,
+      },
     },
   },
 }

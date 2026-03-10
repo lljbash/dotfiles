@@ -1,3 +1,4 @@
+---@diagnostic disable: undefined-global
 --- 外观美化插件
 return {
   -- 主题配色
@@ -127,7 +128,7 @@ return {
             {
               "diagnostics",
               on_click = function()
-                vim.cmd("Telescope diagnostics")
+                Snacks.picker.diagnostics()
               end,
             },
           },
@@ -146,16 +147,13 @@ return {
               padding = { left = 0, right = 1 },
               fmt = shorten_path(40),
               on_click = function()
-                require("telescope").extensions.file_browser.file_browser({
-                  path = vim.fn.expand("%:p:h"),
-                  select_buffer = true,
-                })
+                Snacks.picker.explorer()
               end,
             },
             {
               "aerial",
               on_click = function()
-                vim.cmd("Telescope aerial")
+                require("aerial").snacks_picker()
               end,
             },
           },
@@ -211,7 +209,6 @@ return {
           timeout = 5000,
         },
       },
-      "nvim-telescope/telescope.nvim", -- telescope integration
     },
     config = function()
       require("noice").setup({
@@ -270,13 +267,11 @@ return {
           },
         },
       })
-      -- telescope integration
-      require("telescope").load_extension("noice")
       -- NOTE: 使用 <Space>e 查看历史通知
       vim.keymap.set(
         "n",
         "<Space>e",
-        "<cmd>Telescope noice theme=dropdown<cr>",
+        function() require("noice").cmd("history") end,
         { desc = "Noice history" }
       )
     end,

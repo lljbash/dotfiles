@@ -21,28 +21,6 @@ return {
           "Struct",
         },
         autojump = true,
-        nav = {
-          win_opts = {
-            winhl = "NormalFloat:Normal,FloatBorder:TelescopeBorder",
-            cursorline = true,
-            winblend = 0,
-          },
-          autojump = false,
-          preview = false,
-          keymaps = {
-            ["<CR>"] = "actions.jump",
-            ["<2-LeftMouse>"] = "actions.jump",
-            ["<C-v>"] = "actions.jump_vsplit",
-            ["<C-s>"] = "actions.jump_split",
-            h = "actions.left",
-            l = "actions.right",
-            ["<C-c>"] = "actions.close",
-            ["<Left>"] = "actions.left",
-            ["<Right>"] = "actions.right",
-            q = "actions.close",
-            ["<ESC>"] = "actions.close",
-          },
-        },
         lsp = {
           priority = {
             marksman = -1,
@@ -56,7 +34,7 @@ return {
         group = augroup,
         callback = function(opts)
           local ft = vim.bo[opts.buf].filetype
-          if ft == "aerial" or ft == "aerial-nav" then
+          if ft == "aerial" then
             vim.cmd("hi Cursor blend=100")
           end
         end,
@@ -65,7 +43,7 @@ return {
         group = augroup,
         callback = function(opts)
           local ft = vim.bo[opts.buf].filetype
-          if ft == "aerial" or ft == "aerial-nav" then
+          if ft == "aerial" then
             vim.cmd("hi Cursor blend=0")
           end
         end,
@@ -74,10 +52,9 @@ return {
       -- keybindings
       require("which-key").add({
         { "<Leader>o", aerial.toggle, desc = "Open/focus symbol outline" },
-        { "gs", aerial.nav_toggle, desc = "Symbol navigation" },
         { "[s", aerial.prev, desc = "Previous symbol" },
         { "]s", aerial.next, desc = "Next symbol" },
-        { "<Space>s", "<cmd>Telescope aerial<cr>", desc = "Symbols" },
+        { "<Space>s", function() require("aerial").snacks_picker() end, desc = "Symbols" },
       })
     end,
   },

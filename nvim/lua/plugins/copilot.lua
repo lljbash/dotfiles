@@ -19,11 +19,6 @@ return {
   {
     "folke/sidekick.nvim",
     event = "VeryLazy",
-    opts = {
-      cli = {
-        picker = "telescope",
-      },
-    },
     keys = {
       {
         "<Tab>",

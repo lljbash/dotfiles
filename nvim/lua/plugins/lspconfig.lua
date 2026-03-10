@@ -6,7 +6,6 @@ return {
       "saghen/blink.cmp", -- for capabilities setting
       "folke/which-key.nvim", -- for easier key-binding
       "williamboman/mason-tool-installer.nvim", -- for automatic installation
-      "nvim-telescope/telescope.nvim",
     },
     config = function()
       vim.lsp.enable("clangd")
@@ -192,19 +191,11 @@ return {
               fn({ border = "rounded" })
             end
           end
-          -- https://github.com/gbrlsnchs/telescope-lsp-handlers.nvim/issues/10
-          local telb = require("telescope.builtin")
           require("which-key").add({
             buffer = ev.buf,
             { "K", rounded(vim.lsp.buf.hover), desc = "Hover" },
             { "<C-k>", vim.lsp.buf.signature_help, desc = "Signature help" },
             { "<leader>r", vim.lsp.buf.rename, desc = "Rename symbol" },
-            { "gd", telb.lsp_definitions, desc = "Goto definition" },
-            -- { "gD", vim.lsp.buf.declaration, desc = "Goto declaration" },
-            { "gi", telb.lsp_implementations, desc = "Goto implementation" },
-            { "gr", telb.lsp_references, desc = "Goto references" },
-            { "go", telb.lsp_outgoing_calls, desc = "Outgoing calls" },
-            { "gh", telb.lsp_incoming_calls, desc = "Incoming calls" },
           })
           if client.name == "clangd" then
             vim.keymap.set("n", "<Leader>sw", "<cmd>LspClangdSwitchSourceHeader<cr>", {
@@ -255,9 +246,6 @@ return {
   -- Code action 预览
   {
     "aznhe21/actions-preview.nvim",
-    dependencies = {
-      "nvim-telescope/telescope.nvim",
-    },
     opts = function()
       return {
         highlight_command = {
@@ -265,7 +253,10 @@ return {
           require("actions-preview.highlight").diff_so_fancy(),
           require("actions-preview.highlight").diff_highlight(),
         },
-        telescope = require("telescope.themes").get_dropdown({}),
+        backend = { "snacks", "minipick", "nui" },
+        snacks = {
+          layout = { preset = "default" },
+        },
       }
     end,
     keys = {
