@@ -19,6 +19,15 @@ return {
   {
     "folke/sidekick.nvim",
     event = "VeryLazy",
+    opts = {
+      cli = {
+        mux = {
+          enabled = true,
+          backend = "tmux",
+          create = "terminal",
+        },
+      },
+    },
     keys = {
       {
         "<Tab>",
