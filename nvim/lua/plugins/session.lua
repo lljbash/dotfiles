@@ -13,8 +13,7 @@ return {
     },
     init = function()
       vim.o.sessionoptions =
-        "blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions"
-
+        "blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions,globals"
       vim.api.nvim_create_autocmd("QuitPre", {
         callback = function()
           local cur_win = vim.api.nvim_get_current_win()
@@ -30,6 +29,11 @@ return {
       })
     end,
     opts = {
+      pre_save_cmds = {
+        function()
+          vim.api.nvim_exec_autocmds("User", { pattern = "SessionSavePre" })
+        end,
+      },
       post_restore_cmds = {
         function()
           for _, bufnr in ipairs(vim.api.nvim_list_bufs()) do
