@@ -1,4 +1,3 @@
----@diagnostic disable: undefined-global
 return {
   {
     "folke/snacks.nvim",
@@ -8,6 +7,7 @@ return {
       "nvim-tree/nvim-web-devicons", -- for icons
       "tpope/vim-unimpaired",
     },
+    ---@module "snacks"
     ---@type snacks.Config
     opts = {
       scope = {
@@ -182,6 +182,7 @@ return {
       {
         "<Space>y",
         function()
+          ---@diagnostic disable-next-line: undefined-field
           Snacks.picker.yanky()
         end,
         desc = "Yank History",

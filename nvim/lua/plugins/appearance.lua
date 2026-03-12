@@ -1,4 +1,3 @@
----@diagnostic disable: undefined-global
 --- 外观美化插件
 return {
   -- 主题配色

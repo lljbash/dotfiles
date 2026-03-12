@@ -6,6 +6,7 @@ return {
       "saghen/blink.cmp", -- for capabilities setting
       "folke/which-key.nvim", -- for easier key-binding
       "williamboman/mason-tool-installer.nvim", -- for automatic installation
+      { "folke/lazydev.nvim", ft = "lua", opts = {} }, -- for lua_ls plugin types
     },
     config = function()
       vim.lsp.enable("clangd")

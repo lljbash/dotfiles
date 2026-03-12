@@ -103,6 +103,7 @@ return {
         },
         sources = {
           default = {
+            "lazydev",
             "lsp",
             "path",
             "snippets",
@@ -112,6 +113,11 @@ return {
             "conventional_commits",
           },
           providers = {
+            lazydev = {
+              name = "LazyDev",
+              module = "lazydev.integrations.blink",
+              score_offset = 100,
+            },
             lsp = { fallbacks = {} },
             path = { opts = { trailing_slash = false } },
             buffer = {
