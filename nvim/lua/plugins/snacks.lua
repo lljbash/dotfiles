@@ -10,11 +10,19 @@ return {
     ---@module "snacks"
     ---@type snacks.Config
     opts = {
+      explorer = {
+        enabled = true,
+      },
       scope = {
         enabled = true,
       },
       picker = {
         enabled = true,
+        sources = {
+          explorer = {
+            auto_close = true,
+          },
+        },
         matcher = {
           frecency = true,
         },
