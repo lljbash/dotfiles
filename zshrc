@@ -144,7 +144,8 @@ zt as"null" from"gh-r" nocompile light-mode for \
         neovim/neovim
 ## With completions
 zt as"completion" blockf from"gh-r" nocompile light-mode for \
-    sbin"fd" atload"unalias fd &>/dev/null" \
+    mv"fd* -> fd" cp"ripgrep/comp*/_fd -> _fd" sbin"fd/fd" \
+    atload"unalias fd &>/dev/null" \
         @sharkdp/fd \
     mv"ripgrep* -> ripgrep" cp"ripgrep/comp*/_rg -> _rg" sbin"ripgrep/rg" \
     atclone"rm -rf ripgrep/comp*" atpull'%atclone' \
