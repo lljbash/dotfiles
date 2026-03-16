@@ -15,6 +15,7 @@ Personal development environment configs:
 - Never guess or assume anything without asking
 - Never run `just` commands (dangerous: overwrites configs, installs deps, cleans user data)
 - Don't commit or push unless I ask
+- When debugging issues, verify your assumptions with logs before making fixes. Don't assume you know the root cause without evidence.
 
 ## After Making Changes
 - Lua files: run `stylua`

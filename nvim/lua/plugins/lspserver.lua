@@ -1,7 +1,8 @@
 return {
   -- 使用 Mason 管理 LSP 等工具
   {
-    "KingMichaelPark/mason.nvim",
+    "lljbash/mason.nvim",
+    branch = "fix/use-uv-bug",
     build = ":MasonUpdate",
     opts = {
       pip = { use_uv = true },
@@ -13,7 +14,7 @@ return {
   -- 自动安装 Mason 管理的工具
   {
     "WhoIsSethDaniel/mason-tool-installer.nvim",
-    dependencies = { "KingMichaelPark/mason.nvim" },
+    dependencies = { "lljbash/mason.nvim" },
     opts = {
       ensure_installed = {
         -- LSP
