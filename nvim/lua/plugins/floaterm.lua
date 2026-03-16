@@ -21,6 +21,13 @@ return {
         pattern = "*",
         command = "FloatermKill!",
       })
+      vim.api.nvim_create_autocmd("User", {
+        group = augroup,
+        pattern = "FloatermOpen",
+        callback = function()
+          vim.opt_local.winblend = 0
+        end,
+      })
       vim.api.nvim_create_autocmd("WinEnter", {
         group = augroup,
         pattern = "term://*",
