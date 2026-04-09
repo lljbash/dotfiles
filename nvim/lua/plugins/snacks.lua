@@ -143,6 +143,13 @@ return {
         end,
         desc = "File Explorer",
       },
+      {
+        "<Space>d",
+        function()
+          Snacks.picker.git_diff()
+        end,
+        desc = "Git Diff",
+      },
       -- LSP
       {
         "gD",
