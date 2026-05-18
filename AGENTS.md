@@ -24,6 +24,12 @@ Personal development environment configs:
 
 If a tool is not found, check `~/.local/share/nvim/mason/bin`. If still not found, ask me to install it.
 
+## Neovim Config Workflow
+- Config source of truth is `nvim/` in this repo, deployed to `~/.config/nvim` via `just install-nvim-configs`
+- After editing files in `nvim/`, remind the user to run `just install-nvim-configs` before testing
+- To test plugin changes: user runs `just install-nvim-configs`, then `nvim --headless "+Lazy! sync" +qa`
+- lazy.nvim: `init` runs **before** plugin load (use for pure vim options); `config` runs **after** (use for anything that depends on the plugin being loaded)
+
 ---
 
 # Code Style (Reference)
