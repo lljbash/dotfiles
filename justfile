@@ -41,7 +41,8 @@ ubuntu-install-apps:
 	                    zsh tmux ncurses-term \
 	                    xsel fzf \
 	                    gcc g++ cmake ccache universal-ctags ninja-build \
-	                    sqlite3 libsqlite3-dev
+	                    sqlite3 libsqlite3-dev \
+	                    libclang-dev
 
 install-user-apps:
 	command -v uv || (curl -LsSf https://astral.sh/uv/install.sh | sh)
@@ -50,6 +51,7 @@ install-user-apps:
 	~/.cargo/bin/rustup component add rust-analyzer
 	~/.cargo/bin/rustup component add rust-src
 	./install_node.sh
+	~/.cargo/bin/cargo install tree-sitter-cli
 
 install-zsh-configs:
 	cp zshrc ~/.zshrc

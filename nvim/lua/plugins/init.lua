@@ -54,7 +54,6 @@ return {
   {
     "sustech-data/wildfire.nvim",
     keys = { "<CR>" },
-    dependencies = { "nvim-treesitter/nvim-treesitter" },
     opts = {},
   },
 

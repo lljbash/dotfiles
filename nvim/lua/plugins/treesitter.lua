@@ -1,62 +1,38 @@
+-- Filetypes to disable treesitter highlighting (fallback to vim regex syntax)
+local hl_disable = { "cmake", "git_rebase", "gitcommit" }
+
 return {
+  -- Tree-sitter parser manager (auto-install on file open)
   {
-    "nvim-treesitter/nvim-treesitter",
-    branch="master",
-    dependencies = {
-      { "LiadOz/nvim-dap-repl-highlights", opts = {} },
-    },
-    build = ":TSUpdate",
-    main = "nvim-treesitter.configs",
-    opts = {
-      ensure_installed = {
-        "bash",
-        "doxygen",
-        "markdown_inline",
-        "regex",
-        "dap_repl", -- from nvim-dap-repl-highlights
-      },
-      sync_install = false,
-      auto_install = true,
-      highlight = {
-        enable = true,
-        disable = {
-          "cmake",
-          "git_rebase",
-          "gitcommit",
-        },
-        additional_vim_regex_highlighting = false,
-      },
-      indent = { enable = true },
-    },
+    "arborist-ts/arborist.nvim",
+    lazy = false,
     init = function()
       -- Use treesitter to fold code
       vim.opt.foldmethod = "expr"
-      vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
+      vim.opt.foldexpr = "v:lua.vim.treesitter.foldexpr()"
       vim.opt.foldlevel = 99 -- Open all folds by default
     end,
-  },
+    config = function()
+      require("arborist").setup({ install_popular = true })
 
-  -- Debug treesitter
-  --
-  -- ## Deprecation notice
-  --
-  -- This plugin is **deprecated** since the functionality is included in Neovim: Use
-  --
-  -- - `:Inspect` to show the highlight groups under the cursor
-  -- - `:InspectTree` to show the parsed syntax tree ("TSPlayground")
-  -- - `:EditQuery` to open the Live Query Editor (Nvim 0.10+)
-  {
-    enabled = false,
-    "nvim-treesitter/playground",
-    dependencies = { "nvim-treesitter/nvim-treesitter" },
+      local group = vim.api.nvim_create_augroup("treesitter_hl", { clear = true })
+      vim.api.nvim_create_autocmd("FileType", {
+        group = group,
+        callback = function(args)
+          if not vim.tbl_contains(hl_disable, vim.bo[args.buf].filetype) then
+            pcall(vim.treesitter.start, args.buf)
+            vim.bo[args.buf].indentexpr = "v:lua.vim.treesitter.indentexpr()"
+          end
+        end,
+      })
+    end,
   },
 
   -- Virtual text context for neovim treesitter
   {
     "andersevenrud/nvim_context_vt",
-    dependencies = { "nvim-treesitter/nvim-treesitter" },
     opts = {
-      prefix = "",
+      prefix = "",
       highlight = "LspInlayHint",
       min_rows_ft = {
         python = 50,
