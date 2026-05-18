@@ -29,6 +29,7 @@ If a tool is not found, check `~/.local/share/nvim/mason/bin`. If still not foun
 - After editing files in `nvim/`, remind the user to run `just install-nvim-configs` before testing
 - To test plugin changes: user runs `just install-nvim-configs`, then `nvim --headless "+Lazy! sync" +qa`
 - lazy.nvim: `init` runs **before** plugin load (use for pure vim options); `config` runs **after** (use for anything that depends on the plugin being loaded)
+- Treesitter is **built-in** since Neovim 0.12; `nvim-treesitter/nvim-treesitter` has been archived and replaced by `arborist-ts/arborist.nvim` (parser auto-install only). Never declare `nvim-treesitter/nvim-treesitter` as a dependency — treesitter APIs are built-in, and arborist handles parser installation automatically on file open.
 
 ---
 
