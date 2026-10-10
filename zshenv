@@ -53,8 +53,6 @@ unset -f get_var set_var dedup_var add_to_var
 # Other configurations
 ## git editor
 export EDITOR=nvim
-## opencode options
-export OPENCODE_EXPERIMENTAL_BACKGROUND_SUBAGENTS=1
 ## proxy server
 #export ALL_PROXY=socks5://localhost:1080
 ## using ccache for cmake
