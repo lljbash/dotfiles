@@ -11,4 +11,4 @@ source ~/.nvm/nvm.sh
 nvm install --lts
 nvm alias default lts/*
 
-npm install -g opencode-ai@latest
+npm install -g @opencode/cli@latest
