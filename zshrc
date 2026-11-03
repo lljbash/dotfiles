@@ -128,17 +128,17 @@ zt as"null" from"gh-r" nocompile light-mode for \
            if [ -x /opt/homebrew/bin/eza ]; then
                eza() { /opt/homebrew/bin/eza "$@" }
            fi
-           alias l='\''eza -lbF --git $(_lljbash_eza_icons)'\'';
-           alias ll='\''eza -lbGF --git $(_lljbash_eza_icons)'\'';
-           alias llm='\''eza -lbGd --git --sort=modified $(_lljbash_eza_icons)'\'';
-           alias la='\''eza -lbaF --git $(_lljbash_eza_icons)'\'';
+           alias l='\''eza -lbF --git $(_lljbash_eza_icons) --'\'';
+           alias ll='\''eza -lbGF --git $(_lljbash_eza_icons) --'\'';
+           alias llm='\''eza -lbGd --git --sort=modified $(_lljbash_eza_icons) --'\'';
+           alias la='\''eza -lbaF --git $(_lljbash_eza_icons) --'\'';
            alias lx='\''eza -lbhHigUmuSa@ --time-style=long-iso --git \
-                     --color-scale $(_lljbash_eza_icons)'\'';
-           alias lS='\''eza -1'\'';
-           alias lt='\''eza -TF $(_lljbash_eza_icons)'\''
-           alias lta='\''eza -TaF --ignore-glob=.git $(_lljbash_eza_icons)'\''
-           alias llt='\''eza -lbTF --git $(_lljbash_eza_icons)'\''
-           alias llta='\''eza -lbTaF --git --ignore-glob=.git $(_lljbash_eza_icons)'\''' \
+                     --color-scale $(_lljbash_eza_icons) --'\'';
+           alias lS='\''eza -1 --'\'';
+           alias lt='\''eza -TF $(_lljbash_eza_icons) --'\''
+           alias lta='\''eza -TaF --ignore-glob=.git $(_lljbash_eza_icons) --'\''
+           alias llt='\''eza -lbTF --git $(_lljbash_eza_icons) --'\''
+           alias llta='\''eza -lbTaF --git --ignore-glob=.git $(_lljbash_eza_icons) --'\''' \
         eza-community/eza \
     bpick"*tar*" mv"nvim* -> nvim" sbin"nvim/bin/nvim" \
         neovim/neovim
