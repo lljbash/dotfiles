@@ -122,7 +122,7 @@ zt as"null" from"gh-r" nocompile light-mode for \
     sbin"eza" \
     atload'_lljbash_eza_icons() {
                if [[ $POWERLEVEL9K_LEFT_PROMPT_ELEMENTS[(r)os_icon] == os_icon ]]; then
-                   echo "--icons"
+                   echo "--icons always"
                fi
            }
            if [ -x /opt/homebrew/bin/eza ]; then
